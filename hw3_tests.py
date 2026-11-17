@@ -1,6 +1,7 @@
 import data
 import build_data
 import unittest
+import hw3
 
 
 # These two values are defined to support testing below. The
@@ -176,17 +177,34 @@ reduced_data = [
     ]
 
 class TestCases(unittest.TestCase):
-    pass
+
 
     # Part 1
     # test population_total
+    def test_empty_population(self):
+        self.assertEqual(hw3.population_total([]), 0)
+    def test_population(self):
+        self.assertEqual(hw3.population_total(full_data), 318_857_056)
+    def test_single(self):
+        self.assertEqual(hw3.population_total(reduced_data), 655813)
 
     # Part 2
     # test filter_by_state
+    def test_CA(self):
+        self.assertEqual(hw3.filter_by_state(reduced_data, 'CA'), [reduced_data[2], reduced_data[3]])
+    def test_AL(self):
+        self.assertEqual(hw3.filter_by_state(reduced_data, 'AL'), [reduced_data[0]])
+    def test_absent(self):
+        self.assertEqual(hw3.filter_by_state(reduced_data, 'HI'), [])
 
     # Part 3
     # test population_by_education
+    def test_slo(self):
+        self.assertEqual(hw3.population_by_education([reduced_data[2]], "Bachelor's Degree or Higher"), 87_911.145)
+    def test_empty_education(self):
+        self.assertEqual(hw3.population_by_education([], "Bachelor's Degree or Higher"), 0)
     # test population_by_ethnicity
+    
     # test population_below_poverty_level
 
     # Part 4
